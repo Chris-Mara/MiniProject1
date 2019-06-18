@@ -19,9 +19,18 @@ class csv {
 
         $file = fopen($filename, "r");
 
+        $fieldNames = array();
+
+        $counter = 0;
+
         while(! feof($file)) {
             $record = fgetcsv($file);
-            $records[] = recordFactory::create($record);
+            if ($counter == 0) {
+                $fieldNames = $record;
+            } else {
+                $records[] = recordFactory::create($fieldNames, $record);
+            }
+            $counter++;
         }
 
         fclose($file);
@@ -32,8 +41,13 @@ class csv {
 
 //Class for a row or 'record' in the table
 class record {
-    public function __construct($record) {
+    public function __construct( Array $record = null) {
         print_r($record);
+        $this->createProperty();
+    }
+
+    public function createProperty($name = 'month', $value = 'May') {
+        $this->{$name} = $value;
     }
 }
 
