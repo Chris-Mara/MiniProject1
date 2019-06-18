@@ -25,7 +25,7 @@ class csv {
 
 //Class for a row or 'record' in the table
 class record {
-
+    
 }
 
 //Class for creating record objects
@@ -43,7 +43,9 @@ class html {
 
 //Class for printing our the page produced
 class page {
-
+    static public function printPage($page) {
+        echo $page;
+    }
 }
 
 ?>
