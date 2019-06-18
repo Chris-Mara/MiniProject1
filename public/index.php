@@ -15,7 +15,11 @@ class main {
 
 //Class for iterating through the
 class csv {
-    static public function getRecords($filename) { /*
+    static public function getRecords($filename) {
+
+        $records = 'another test';
+        return $records;
+        /*
         $file = fopen($filename, "r");
 
         while(! feof($file)) {
@@ -48,12 +52,14 @@ class html
 {
     static public function createTable($records) {
 
+        $table = $records;
+        return $table;
     }
 }
 //Class for printing our the page produced
 class system {
     static public function printPage($page) {
-//        echo $page;
+        echo $page;
     }
 }
 
