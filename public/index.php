@@ -1,14 +1,21 @@
 <?php
 
+$filename = 'records.csv';
+$program = new main($filename);
 
 //Main Class
 class main {
-
+    private $html;
+    public function __construct($filename) {
+        $records = csv::getRecords($filename);
+        $table = html::createTable($records);
+        system::printPage($table);
+    }
 }
 
 //Class for iterating through the
 class csv {
-    static public function getRecords($filename) {
+    static public function getRecords($filename) { /*
         $file = fopen($filename, "r");
 
         while(! feof($file)) {
@@ -20,12 +27,12 @@ class csv {
         fclose($file);
         return $records;
 
-    }
+    */}
 }
 
 //Class for a row or 'record' in the table
 class record {
-    
+
 }
 
 //Class for creating record objects
@@ -37,14 +44,16 @@ class recordFactory {
 }
 
 //Class for creating the html of the table
-class html {
+class html
+{
+    static public function createTable($records) {
 
+    }
 }
-
 //Class for printing our the page produced
-class page {
+class system {
     static public function printPage($page) {
-        echo $page;
+//        echo $page;
     }
 }
 
