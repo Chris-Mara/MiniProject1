@@ -21,24 +21,26 @@ class csv {
 
         while(! feof($file)) {
             $record = fgetcsv($file);
-            $records[] = $record;
+            $records[] = recordFactory::create($record);
         }
 
         fclose($file);
-        echo $records;
+        return $records;
 
     }
 }
 
 //Class for a row or 'record' in the table
 class record {
-
+    public function __construct($record) {
+        print_r($record);
+    }
 }
 
 //Class for creating record objects
 class recordFactory {
-    public static function create(Array $array) {
-        $record = new record();
+    public static function create(Array $array = null) {
+        $record = new record($array);
         return $record;
     }
 }
