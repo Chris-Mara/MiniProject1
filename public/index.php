@@ -1,6 +1,6 @@
 <?php
 
-$filename = 'records.csv';
+$filename = '../records.csv';
 $program = new main($filename);
 
 //Main Class
@@ -17,21 +17,17 @@ class main {
 class csv {
     static public function getRecords($filename) {
 
-        $records = 'another test';
-        return $records;
-        /*
         $file = fopen($filename, "r");
 
         while(! feof($file)) {
             $record = fgetcsv($file);
-
             $records[] = $record;
         }
 
         fclose($file);
-        return $records;
+        echo $records;
 
-    */}
+    }
 }
 
 //Class for a row or 'record' in the table
