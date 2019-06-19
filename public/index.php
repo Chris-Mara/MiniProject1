@@ -71,12 +71,21 @@ class recordFactory {
 //Class for creating the html of the table
 class html
 {
+
+    static function genLink() {
+        return '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">';
+    }
+
     static public function genTable(Array $records, String $style) {
-        $table = "<table class='table $style>'";
+
+        $table = self::genLink();
+        $table .= "<table class='table $style>'";
+        self::genHeader($records[0]->returnArray());
+        $table .= "<tbody>";
         foreach ($records as $record) {
-            $table .= self::genRow($record);
+            $table .= self::genRow($record->returnArray());
         }
-        $table .= "</table>";
+        $table .= "</tbody></table>";
         return $table;
     }
 
@@ -90,7 +99,9 @@ class html
     }
 
     static function genHeader(Array $array) {
-        return null;
+        $header = "<thead>";
+
+        return $header . "</thead>";
     }
 
 }
