@@ -5,7 +5,6 @@ $program = new main($filename);
 
 //Main Class
 class main {
-    private $html;
     public function __construct($filename) {
         $records = csv::getRecords($filename);
         $table = html::createTable($records);
@@ -49,8 +48,11 @@ class record {
             $this->createProperty($field, $value);
         }
 
-        print_r($this);
+    }
 
+    public function returnArray() {
+        $array = (array) $this;
+        return $array;
     }
 
     public function createProperty($name = 'month', $value = 'May') {
@@ -70,9 +72,10 @@ class recordFactory {
 class html
 {
     static public function createTable($records) {
-
-        $table = $records;
-        return $table;
+        foreach ($records as $record) {
+            $array = $record->returnArray();
+            print_r($array);
+        }
     }
 }
 //Class for printing our the page produced
