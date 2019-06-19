@@ -79,8 +79,8 @@ class html
     static public function genTable(Array $records, String $style) {
 
         $table = self::genLink();
-        $table .= "<table class='table $style>'";
-        self::genHeader($records[0]->returnArray());
+        $table .= "<table class='table $style'>";
+        $table .= self::genHeader($records[0]->returnArray());
         $table .= "<tbody>";
         foreach ($records as $record) {
             $table .= self::genRow($record->returnArray());
@@ -100,7 +100,9 @@ class html
 
     static function genHeader(Array $array) {
         $header = "<thead>";
-
+        foreach ($array as $key => $value) {
+            $header .= "<th>$key</th>";
+        }
         return $header . "</thead>";
     }
 
