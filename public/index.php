@@ -41,9 +41,16 @@ class csv {
 
 //Class for a row or 'record' in the table
 class record {
-    public function __construct( Array $record = null) {
-        print_r($record);
-        $this->createProperty();
+    public function __construct( Array $fieldNames = null, Array $values = null) {
+
+        $record = array_combine($fieldNames, $values);
+
+        foreach ($record as $field => $value) {
+            $this->createProperty($field, $value);
+        }
+
+        print_r($this);
+
     }
 
     public function createProperty($name = 'month', $value = 'May') {
@@ -53,8 +60,8 @@ class record {
 
 //Class for creating record objects
 class recordFactory {
-    public static function create(Array $array = null) {
-        $record = new record($array);
+    public static function create(Array $fieldNames = null, Array $values = null) {
+        $record = new record($fieldNames, $values);
         return $record;
     }
 }
