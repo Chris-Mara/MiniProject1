@@ -7,12 +7,12 @@ $program = new main($filename);
 class main {
     public function __construct($filename) {
         $records = csv::getRecords($filename);
-        $table = html::createTable($records);
+        $table = html::genTable($records, "table-striped");
         system::printPage($table);
     }
 }
 
-//Class for iterating through the
+//Class for iterating through the csv file
 class csv {
     static public function getRecords($filename) {
 
@@ -71,12 +71,28 @@ class recordFactory {
 //Class for creating the html of the table
 class html
 {
-    static public function createTable($records) {
+    static public function genTable(Array $records, String $style) {
+        $table = "<table class='table $style>'";
         foreach ($records as $record) {
-            $array = $record->returnArray();
-            print_r($array);
+            $table .= self::genRow($record);
         }
+        $table .= "</table>";
+        return $table;
     }
+
+    static function genRow(Array $array) {
+        $row = "<tr>";
+        foreach ($array as $key => $value) {
+            $row .= "<td>$value</td>";
+        }
+        $row .= "</tr>";
+        return $row;
+    }
+
+    static function genHeader(Array $array) {
+        return null;
+    }
+
 }
 //Class for printing our the page produced
 class system {
